@@ -8,7 +8,7 @@ import com.example.roomdatabase26112019.model.database.SinhvienDatabase;
 
 import java.util.List;
 
-import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.Observable;
 
 
 public class RoomRepository {
