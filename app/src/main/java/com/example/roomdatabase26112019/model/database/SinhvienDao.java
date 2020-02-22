@@ -6,7 +6,8 @@ import androidx.room.Query;
 import java.util.List;
 
 import io.reactivex.Maybe;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
+
 @Dao
 public interface SinhvienDao {
 
