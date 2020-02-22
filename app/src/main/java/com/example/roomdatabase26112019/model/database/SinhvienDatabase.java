@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 public abstract class SinhvienDatabase extends RoomDatabase {
     private static SinhvienDatabase sinhvienDatabase = null;
 
-    protected abstract SinhvienDao sinhvienDao();
+    public abstract SinhvienDao sinhvienDao();
 
     public static SinhvienDatabase getInstance(Context context) {
         if (sinhvienDatabase == null) {
