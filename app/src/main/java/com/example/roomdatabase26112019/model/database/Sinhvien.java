@@ -1,6 +1,7 @@
 package com.example.roomdatabase26112019.model.database;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "sinhvien")
@@ -16,6 +17,8 @@ public class Sinhvien {
     public Sinhvien() {
 
     }
+
+    @Ignore
     public Sinhvien(String ten, Integer namsinh, String quequan) {
         this.ten = ten;
         this.namsinh = namsinh;

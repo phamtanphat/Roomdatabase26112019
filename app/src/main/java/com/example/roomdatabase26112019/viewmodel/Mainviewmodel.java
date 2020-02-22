@@ -12,9 +12,8 @@ import com.example.roomdatabase26112019.repository.RoomRepository;
 
 import java.util.List;
 
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-//import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -34,12 +33,12 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
                 .subscribe(new Observer<List<Sinhvien>>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
-
+                        compositeDisposable.add(d);
                     }
 
                     @Override
                     public void onNext(@NonNull List<Sinhvien> sinhviens) {
-
+                        mutableLiveDataAraySinhvien.postValue(sinhviens);
                     }
 
                     @Override
@@ -52,8 +51,6 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
 
                     }
                 });
-
-
         return mutableLiveDataAraySinhvien;
     }
 }
