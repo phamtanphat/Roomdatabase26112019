@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void setListener() {
-        mainviewmodel.getAllSinhvien(this);
-        mainviewmodel.insertSinhvien(this, new Sinhvien[]{new Sinhvien("Nguyễn Văn A", 1990, "Quận 1")});
+//        mainviewmodel.getAllSinhvien(this);
+//        mainviewmodel.insertSinhvien(this, new Sinhvien[]{new Sinhvien("Nguyễn Văn A", 1990, "Quận 1")});
     }
 
     private void obserData() {
