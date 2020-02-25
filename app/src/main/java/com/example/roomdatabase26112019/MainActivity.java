@@ -19,8 +19,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainviewmodel = new Mainviewmodel();
+        obserData();
+        setListener();
 
-        mainviewmodel.getAllSinhvien(this).observe(this, new Observer<List<Sinhvien>>() {
+    }
+
+    private void setListener() {
+        mainviewmodel.getAllSinhvien(this);
+    }
+
+    private void obserData() {
+        mainviewmodel.getAllSinhvienSuccess().observe(this, new Observer<List<Sinhvien>>() {
             @Override
             public void onChanged(List<Sinhvien> sinhviens) {
                 Log.d("BBB",sinhviens.size() + "");

@@ -23,7 +23,7 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<List<Sinhvien>> mutableLiveDataAraySinhvien = new MutableLiveData<>();
 
-    public LiveData<List<Sinhvien>> getAllSinhvien(Context context) {
+    public void getAllSinhvien(Context context) {
         RoomRepository
                 .getInstance(context)
                 .getAllSinhvien()
@@ -50,6 +50,8 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
 
                     }
                 });
+    }
+    public LiveData<List<Sinhvien>> getAllSinhvienSuccess(){
         return mutableLiveDataAraySinhvien;
     }
 }
