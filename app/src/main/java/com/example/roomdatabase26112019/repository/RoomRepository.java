@@ -1,6 +1,7 @@
 package com.example.roomdatabase26112019.repository;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import com.example.roomdatabase26112019.model.database.Sinhvien;
 import com.example.roomdatabase26112019.model.database.SinhvienDao;
@@ -29,6 +30,9 @@ public class RoomRepository {
 
     public Observable<List<Sinhvien>> getAllSinhvien(){
         return sinhvienDao.getAll();
+    }
+    public List<Long> insertSinhvien(Sinhvien... sinhviens){
+        return sinhvienDao.insertSinhvien(sinhviens);
     }
 
 }

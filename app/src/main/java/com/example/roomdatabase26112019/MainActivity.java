@@ -14,6 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Mainviewmodel mainviewmodel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,16 +24,22 @@ public class MainActivity extends AppCompatActivity {
         setListener();
 
     }
-
     private void setListener() {
         mainviewmodel.getAllSinhvien(this);
+        mainviewmodel.insertSinhvien(this, new Sinhvien[]{new Sinhvien("Nguyễn Văn A", 1990, "Quận 1")});
     }
 
     private void obserData() {
         mainviewmodel.getAllSinhvienSuccess().observe(this, new Observer<List<Sinhvien>>() {
             @Override
             public void onChanged(List<Sinhvien> sinhviens) {
-                Log.d("BBB",sinhviens.size() + "");
+                Log.d("BBB",sinhviens.toString());
+            }
+        });
+        mainviewmodel.getIdAfterInsertSuccess().observe(this, new Observer<List<Long>>() {
+            @Override
+            public void onChanged(List<Long> longs) {
+                Log.d("BBB",longs.toString());
             }
         });
     }

@@ -11,7 +11,9 @@ import com.example.roomdatabase26112019.model.database.Sinhvien;
 import com.example.roomdatabase26112019.repository.RoomRepository;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
+import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -22,6 +24,7 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
 
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private MutableLiveData<List<Sinhvien>> mutableLiveDataAraySinhvien = new MutableLiveData<>();
+    private MutableLiveData<List<Long>> mutableLiveDataArrayId= new MutableLiveData<>();
 
     public void getAllSinhvien(Context context) {
         RoomRepository
@@ -54,4 +57,41 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
     public LiveData<List<Sinhvien>> getAllSinhvienSuccess(){
         return mutableLiveDataAraySinhvien;
     }
+
+    public void insertSinhvien(final Context context, final Sinhvien... sinhviens) {
+        Observable<List<Long>> observable = Observable.fromCallable(new Callable<List<Long>>() {
+            @Override
+            public List<Long> call() throws Exception {
+                return RoomRepository.getInstance(context).insertSinhvien(sinhviens);
+            }
+        });
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<Long>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        compositeDisposable.add(d);
+                    }
+
+                    @Override
+                    public void onNext(List<Long> longs) {
+                        mutableLiveDataArrayId.postValue(longs);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    public LiveData<List<Long>> getIdAfterInsertSuccess(){
+        return mutableLiveDataArrayId;
+    }
+
+
 }
