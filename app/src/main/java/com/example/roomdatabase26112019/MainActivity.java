@@ -2,6 +2,8 @@ package com.example.roomdatabase26112019;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mainviewmodel = new Mainviewmodel();
+        mainviewmodel = new ViewModelProvider(this).get(Mainviewmodel.class);
+        getLifecycle().addObserver(mainviewmodel);
+
         obserData();
         setListener();
 

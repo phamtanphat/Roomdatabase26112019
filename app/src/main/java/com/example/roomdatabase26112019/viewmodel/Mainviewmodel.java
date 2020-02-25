@@ -1,10 +1,13 @@
 package com.example.roomdatabase26112019.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 
+import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ViewModel;
 
 import com.example.roomdatabase26112019.model.database.Sinhvien;
@@ -93,5 +96,9 @@ public class Mainviewmodel extends ViewModel implements LifecycleObserver {
         return mutableLiveDataArrayId;
     }
 
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void clearConnectObserver(){
+        compositeDisposable.clear();
+        Log.d("BBB","onStop");
+    }
 }
